@@ -73,10 +73,20 @@ class Automovil(nombre: String, marca: String, modelo: String, capacidadCombusti
     fun realizaDerrape(): Float {
         if (!esHibrido) {
             combustibleActual -= DERRAPE_GAS / calcularAutonomia()
-            return combustibleActual
+            if (combustibleActual < 0) {
+                combustibleActual = 0f
+            } else {
+                return combustibleActual
+            }
         } else {
             combustibleActual -= DERRAPE_HIBRIDO / calcularAutonomia()
+            if (combustibleActual < 0) {
+                combustibleActual = 0f
+            } else {
+                return combustibleActual
+            }
             return combustibleActual
         }
+        return combustibleActual
     }
 }

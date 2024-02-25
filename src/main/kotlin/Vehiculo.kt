@@ -14,8 +14,8 @@ open class Vehiculo(nombre: String, val marca: String, val modelo: String, capac
 
     open var paradas: Int = 0
 
-    open val capacidadCombustible: Float = capacidadCombustible.redondeo(capacidadCombustible)
-    open var combustibleActual: Float = combustibleActual.redondeo(combustibleActual)
+    open val capacidadCombustible: Float = capacidadCombustible.redondeo()
+    open var combustibleActual: Float = combustibleActual.redondeo()
 
     init{
         // Verifica que la capacidad de combustible, el nivel de combustible y los kilómetros actuales no sean negativos.
@@ -99,8 +99,8 @@ open class Vehiculo(nombre: String, val marca: String, val modelo: String, capac
      * @param num El número a redondear.
      * @return El número redondeado.
      */
-    private fun Float.redondeo(num: Float): Float {
-        return (Math.round(num * 100.0f) / 100.0f)
+    private fun Float.redondeo(): Float {
+        return (Math.round(this * 100.0f) / 100.0f)
     }
 }
 
