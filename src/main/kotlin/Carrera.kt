@@ -47,6 +47,7 @@ class Carrera(val nombreCarrera: String, val distanciaTotal: Float, val particip
             actualizarPosiciones()
         }
 
+        println("* Clasificación:")
         for (posicion in posiciones) {
             println("${posiciones.indexOf(posicion)} -> ${posicion.first} (${posicion.second} kms)")
         }
