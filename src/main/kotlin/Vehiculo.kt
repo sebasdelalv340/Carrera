@@ -95,9 +95,12 @@ open class Vehiculo(nombre: String, val marca: String, val modelo: String, capac
     }
 
     /**
-     * Redondea un número de tipo Float a dos decimales.
-     * @param num El número a redondear.
-     * @return El número redondeado.
+     * Realiza el redondeo de un número de punto flotante a dos decimales.
+     *
+     * Esta función toma el valor actual de tipo Float y lo redondea a dos decimales.
+     * Utiliza el método de redondeo estándar para redondear el número al entero más cercano.
+     *
+     * @return El valor de punto flotante redondeado a dos decimales.
      */
     private fun Float.redondeo(): Float {
         return (Math.round(this * 100.0f) / 100.0f)
