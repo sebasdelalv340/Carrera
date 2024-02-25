@@ -64,11 +64,11 @@ class Motocicleta(nombre: String, marca: String, modelo: String, capacidadCombus
      */
     fun realizaCaballito(): Float {
         combustibleActual -= (CABALLITO / calcularKmLitroPorCC())
-        if (combustibleActual < 0) {
+        return if (combustibleActual < 0) {
             combustibleActual = 0f
+            0f
         } else {
-            return combustibleActual
+            combustibleActual
         }
-        return combustibleActual
     }
 }

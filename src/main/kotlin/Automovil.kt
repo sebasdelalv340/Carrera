@@ -71,22 +71,13 @@ class Automovil(nombre: String, marca: String, modelo: String, capacidadCombusti
      * @return El nivel de combustible restante después del derrape.
      */
     fun realizaDerrape(): Float {
-        if (!esHibrido) {
-            combustibleActual -= DERRAPE_GAS / calcularAutonomia()
-            if (combustibleActual < 0) {
-                combustibleActual = 0f
-            } else {
-                return combustibleActual
-            }
+        val derrapeFactor = if (esHibrido) DERRAPE_HIBRIDO else DERRAPE_GAS
+        combustibleActual -= derrapeFactor / calcularAutonomia()
+        return if (combustibleActual < 0) {
+            combustibleActual = 0f
+            0f
         } else {
-            combustibleActual -= DERRAPE_HIBRIDO / calcularAutonomia()
-            if (combustibleActual < 0) {
-                combustibleActual = 0f
-            } else {
-                return combustibleActual
-            }
-            return combustibleActual
+            combustibleActual
         }
-        return combustibleActual
     }
 }
