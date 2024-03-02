@@ -47,7 +47,7 @@ class Motocicleta(nombre: String, marca: String, modelo: String, capacidadCombus
      */
     override fun realizaViaje(distancia: Float): Float {
         if (distancia >= calcularAutonomia()) {
-            val kmRecorre = calcularAutonomia()
+            val kmRecorre = calcularAutonomia().redondeo()
             combustibleActual = 0.0f
             kilometrosActuales += calcularAutonomia()
             return distancia - kmRecorre
@@ -68,7 +68,15 @@ class Motocicleta(nombre: String, marca: String, modelo: String, capacidadCombus
             combustibleActual = 0f
             0f
         } else {
-            combustibleActual
+            combustibleActual.redondeo()
         }
+    }
+
+    /**
+     * Muestra toda la informacción del vehículo.
+     * @return un string con la info del vehículo.
+     */
+    override fun toString(): String {
+        return "Motocicleta(nombre=$nombre, marca=$marca, modelo=$modelo, capacidadCombustible=$capacidadCombustible, combustibleActual=$combustibleActual, kilometrosActuales=$kilometrosActuales, cilindrada=$cilindrada)"
     }
 }

@@ -77,7 +77,15 @@ class Automovil(nombre: String, marca: String, modelo: String, capacidadCombusti
             combustibleActual = 0f
             0f
         } else {
-            combustibleActual
+            combustibleActual.redondeo()
         }
+    }
+
+    /**
+     * Muestra toda la informacción del vehículo.
+     * @return un string con la info del vehículo.
+     */
+    override fun toString(): String {
+        return "Automovil(nombre=$nombre, marca=$marca, modelo=$modelo, capacidadCombustible=$capacidadCombustible, combustibleActual=$combustibleActual, kilometrosActuales=$kilometrosActuales, esElectrico=$esHibrido)"
     }
 }

@@ -14,4 +14,11 @@ fun main() {
     val competicion: Carrera = Carrera("GranPrix", 1000f, listaVehiculos, false)
 
     competicion.iniciarCarrera()
+
+    competicion.obtenerResultados().forEach {println(it)}
+    
+    competicion.obtenerHistorialDetallado()
+
+
+
 }

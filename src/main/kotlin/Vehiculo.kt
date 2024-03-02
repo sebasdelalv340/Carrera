@@ -1,5 +1,18 @@
 
 /**
+ * Realiza el redondeo de un número de punto flotante a dos decimales.
+ *
+ * Esta función toma el valor actual de tipo Float y lo redondea a dos decimales.
+ * Utiliza el método de redondeo estándar para redondear el número al entero más cercano.
+ *
+ * @return El valor de punto flotante redondeado a dos decimales.
+ */
+fun Float.redondeo(): Float {
+    return (this * 100.0f) / 100
+}
+
+
+/**
  * Clase abstracta que representa un vehículo genérico.
  * @param nombre El nombre del vehículo.
  * @param marca La marca del vehículo.
@@ -66,15 +79,15 @@ open class Vehiculo(nombre: String, val marca: String, val modelo: String, capac
      * @return La distancia restante que no pudo ser recorrida debido a la falta de combustible.
      */
     open fun realizaViaje(distancia: Float): Float {
-        if (distancia >= calcularAutonomia()) {
+        return if (distancia >= calcularAutonomia()) {
             val kmRecorre = calcularAutonomia()
             combustibleActual = 0.0f
             kilometrosActuales += calcularAutonomia()
-            return distancia - kmRecorre
+            distancia - kmRecorre
         } else {
             combustibleActual -= (distancia / KM_LITRO)
             kilometrosActuales += distancia
-            return  0.0f
+            0.0f
         }
     }
 
@@ -83,9 +96,9 @@ open class Vehiculo(nombre: String, val marca: String, val modelo: String, capac
      * @param cantidad La cantidad de combustible a repostar en litros.
      * @return La cantidad de combustible que se pudo repostar.
      */
-    fun repostar(cantidad: Float): Float {
+    fun repostar(cantidad: Float = 0f): Float {
         val combustiblePrevio = combustibleActual
-        if ((combustibleActual + cantidad) >= capacidadCombustible) {
+        if (cantidad <= 0 || (combustibleActual + cantidad) >= capacidadCombustible) {
             combustibleActual = capacidadCombustible
             return capacidadCombustible - combustiblePrevio
         } else {
@@ -95,15 +108,12 @@ open class Vehiculo(nombre: String, val marca: String, val modelo: String, capac
     }
 
     /**
-     * Realiza el redondeo de un número de punto flotante a dos decimales.
-     *
-     * Esta función toma el valor actual de tipo Float y lo redondea a dos decimales.
-     * Utiliza el método de redondeo estándar para redondear el número al entero más cercano.
-     *
-     * @return El valor de punto flotante redondeado a dos decimales.
+     * Muestra toda la informacción del vehículo.
+     * @return un string con la info del vehículo.
      */
-    private fun Float.redondeo(): Float {
-        return (Math.round(this * 100.0f) / 100.0f)
+    override fun toString(): String {
+        return "Vehículo: $nombre, Marca: $marca, Modelo: $modelo, Kilómetros Actuales: $kilometrosActuales, Combustible Actual: $combustibleActual L."
     }
+
 }
 
