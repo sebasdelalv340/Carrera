@@ -18,6 +18,11 @@ class Carrera(private val nombreCarrera: String,
     private var historialAcciones: MutableMap<String, MutableList<String>> = mutableMapOf()
     private var posiciones: MutableMap<String, Float> = mutableMapOf()
 
+    init {
+        require(distanciaTotal >= 1000) { "La distancia total de la carrera debe ser al menos 1000 km." }
+        participantes.forEach { vehiculo -> inicializaDatosParticipante(vehiculo) }
+    }
+
     /*
     * Contiene la constante de los kilómetros por tramo.
      */
@@ -43,6 +48,28 @@ class Carrera(private val nombreCarrera: String,
         val historialAcciones: MutableList<String>?
     )
 
+    /**
+     * Proporciona una representación en cadena de texto de la instancia de la carrera, incluyendo detalles clave como
+     * el nombre de la carrera, la distancia total a recorrer, la lista de participantes, el estado actual de la carrera
+     * (en curso o finalizada), el historial de acciones realizadas por los vehículos durante la carrera y las posiciones
+     * actuales de los participantes.
+     *
+     * @return Una cadena de texto que describe los atributos principales de la carrera, incluyendo el nombre,
+     * distancia total, participantes, estado actual, historial de acciones y posiciones de los vehículos participantes.
+     */
+    override fun toString(): String {
+        return "NombreCarrera: $nombreCarrera, DistanciaTotal: $distanciaTotal, Participantes: $participantes, EstadoCarrera: $estadoCarrera, HistorialAcciones: $historialAcciones, Posiciones: $posiciones." }
+
+    /**
+     * Inicializa los datos de un participante en la carrera, preparando su historial de acciones y estableciendo
+     * su posición inicial. Este método se llama automáticamente al agregar un nuevo vehículo a la carrera.
+     *
+     * @param vehiculo El [Vehiculo] cuyos datos se inicializan.
+     */
+    private fun inicializaDatosParticipante(vehiculo: Vehiculo) {
+        historialAcciones[vehiculo.nombre] = mutableListOf()
+        posiciones[vehiculo.nombre] = 0f
+    }
 
     /**
      * Función para iniciar la carrera.
@@ -50,7 +77,7 @@ class Carrera(private val nombreCarrera: String,
      */
     fun iniciarCarrera() {
         estadoCarrera = true
-
+        println("¡Comienza la carrera!")
         while (estadoCarrera) {
             val vehiculo = participantes.random()
             avanzarVehiculo(vehiculo)
@@ -192,7 +219,8 @@ class Carrera(private val nombreCarrera: String,
 
         for ((nombre, km) in posiciones) {
             if (km >= distanciaTotal) {
-                println("$nombre gana la carrera.")
+                println("\n¡Carrera finalizada!")
+                println("\n$nombre gana la carrera.\n")
             }
         }
     }
