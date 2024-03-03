@@ -9,7 +9,7 @@
  * @param kilometrosActuales Los kilómetros totales recorridos por el automóvil.
  * @param esHibrido Indica si el automóvil es híbrido o no.
  */
-class Automovil(nombre: String, marca: String, modelo: String, capacidadCombustible: Float, combustibleActual: Float, kilometrosActuales: Float, private val esHibrido: Boolean): Vehiculo(nombre, marca, modelo, capacidadCombustible, combustibleActual, kilometrosActuales) {
+open class Automovil(nombre: String, marca: String, modelo: String, capacidadCombustible: Float, combustibleActual: Float, kilometrosActuales: Float, private val esHibrido: Boolean): Vehiculo(nombre, marca, modelo, capacidadCombustible, combustibleActual, kilometrosActuales) {
 
     override var paradas: Int = 0
 

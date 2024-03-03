@@ -238,7 +238,7 @@ class Carrera(private val nombreCarrera: String,
             resultadoCarrera.add(
                 ResultadoCarrera(
                     vehiculo,
-                    participantes.indexOf(vehiculo),
+                    listaParticipantes.indexOf(vehiculo),
                     vehiculo.kilometrosActuales,
                     vehiculo.paradas,
                     historialAcciones[vehiculo.nombre]
